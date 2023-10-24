@@ -5,6 +5,9 @@ import Global from './../Global'
 import axios from 'axios';
 import { NavLink } from 'react-router-dom';
 import Doctores from './MenuDetalle/Doctores';
+import DetallesDoctor from './MenuDetalle/DetallesDoctor';
+import CreateHospital from './MenuDetalle/CreateHospital';
+import ListaHospitales from './MenuDetalle/ListaHospitales';
 
 export default class Router extends Component {
     state = {
@@ -32,6 +35,10 @@ export default class Router extends Component {
         var { id } = useParams();
 
         return (<Doctores idHospital={ id }/>)
+    }
+    function DoctorDetallesElement() {
+        var { iddoctor } = useParams();
+        return(<DetallesDoctor iddoctor={ iddoctor } />)
     } 
     return (
       <div>
@@ -46,6 +53,20 @@ export default class Router extends Component {
                     <ul className="navbar-nav">
                         <li className="nav-item">
                             <NavLink className="nav-link active" aria-current="page" to="/">Home</NavLink>
+                        </li>
+                        <li className="nav-item">
+                            <NavLink 
+                                className="nav-link" 
+                                to={"/createhospital"}>
+                                New Hospital
+                            </NavLink>
+                        </li>
+                        <li className="nav-item">
+                            <NavLink 
+                                className="nav-link" 
+                                to={"/listahospitales"}>
+                                Lista Hospitales
+                            </NavLink>
                         </li>
                         <li className="nav-item dropdown">
                             <a className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -70,10 +91,13 @@ export default class Router extends Component {
                     </div>
                 </div>
             </nav>
-                                                                               
+            <hr/>                                                                   
             <Routes>
                 <Route path="/" element={<Home/>}/>
                 <Route path="/doctores/:id" element={<DatosDoctores/>}/>
+                <Route path="/detallesdoctor/:iddoctor" element={<DoctorDetallesElement/>}/>
+                <Route path="/createhospital" element={<CreateHospital />}/>
+                <Route path="/listahospitales" element={<ListaHospitales />}/>
             </Routes>
         </BrowserRouter>
       </div>
