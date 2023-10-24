@@ -1,0 +1,6 @@
+img{
+    content: url("./../../assets/images/img2.png");
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+  }
