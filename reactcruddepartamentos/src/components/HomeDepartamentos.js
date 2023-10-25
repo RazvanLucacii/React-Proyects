@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import imagenHome from "./../assets/images/home.jpg"
 import Global from '../Global';
 import axios from 'axios';
 import gifload from './../assets/images/gifload.gif'
@@ -41,7 +40,7 @@ export default class HomeDepartamentos extends Component {
                             <tr>
                                 <th>Nombre</th>
                                 <th>Localidad</th>
-                                <th>Detalles</th>
+                                <th>-</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -54,6 +53,12 @@ export default class HomeDepartamentos extends Component {
                                             <NavLink className="btn btn-success" to={"/details/" + departamento.numero + "/" + departamento.nombre + "/" + departamento.localidad}>
                                                 Detalles
                                             </NavLink>
+                                            <NavLink className="btn btn-primary" to={"/update/" + departamento.numero}>
+                                                Modificar
+                                            </NavLink>
+                                            <NavLink className="btn btn-danger" to={"/delete/" + departamento.numero}>
+                                                Eliminar
+                                            </NavLink>
                                         </td>
                                     </tr>)
                                 })
@@ -63,7 +68,7 @@ export default class HomeDepartamentos extends Component {
                 )
                 
             }
-        </div>)
+    </div>)
     }
   }
 }

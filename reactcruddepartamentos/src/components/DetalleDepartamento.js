@@ -33,7 +33,7 @@ export default class DetalleDepartamento extends Component {
         <hr/>
         <ul className='list-group'>
             <li className='list-group-item'>
-                ID: {this.props.numero}
+                ID: {this.props.iddepartamento}
             </li>
             <li className='list-group-item'>
                 Nombre: {this.props.nombre}
