@@ -14,7 +14,7 @@ export default class IncrementoSalario extends Component {
     }
 
     findTrabajador = () =>{
-        var request = "api/trabajadores/" + this.props.id_trabajadores;
+        var request = "api/trabajadores/" + this.props.idtrabajador;
         var url = Global.apiUrls + request;
         axios.get(url).then(response =>{
             this.setState({
@@ -30,11 +30,11 @@ export default class IncrementoSalario extends Component {
         var salario = this.cajaSalario.current.value;
 
         var datos = {
-            idTrabajador : id,
+            trabajador : id,
             salario: salario
         }
 
-        var request = "api/trabajadores/updatesalariotrabajadoresoficio/" + this.props.salario;
+        var request = "api/trabajadores/updatesalariotrabajadoresoficio/" + salario;
         var url = Global.apiUrls + request;
         axios.put(url, datos).then(response =>{
             this.setState({
@@ -58,11 +58,11 @@ export default class IncrementoSalario extends Component {
                 this.state.statusGet === true &&
                 (
                     <form>
-                        <label>ID Trabajador</label>
                         <input type="hidden" ref={this.cajaId} className='form-control'></input>
                         <label>Salario</label>
                         <input type="number" min={0} ref={this.cajaSalario} className='form-control'></input>
-                        <h2>{this.state.trabajador.salario + this.cajaSalario.current.value}</h2>
+                        {/* <h2>{this.state.trabajador.salario + this.cajaSalario.current.value}</h2> */}
+                        <button onClick={this.updateSalario} className='btn btn-primary'>Modificar</button>
                     </form>
                 )
             }

@@ -36,7 +36,7 @@ export default class Hospitales extends Component {
 
     Render_Trabajadores = ()=>{ 
         if(this.state.idHospitales === 0)
-            return       
+            return
         return(<Trabajadores id_hospitales={this.state.idHospitales}/>)
     }
 
