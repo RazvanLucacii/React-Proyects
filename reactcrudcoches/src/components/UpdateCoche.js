@@ -17,7 +17,7 @@ export default class UpdateCoche extends Component {
     }
 
     findCoche = () => {
-        var request = "api/coches/" + this.props.idcoche;
+        var request = "api/coches/findcoche/" + this.props.idcoche;
         var url = Global.apiUrlCoches + request;
         axios.get(url).then(response => {
             this.setState({
@@ -61,7 +61,7 @@ export default class UpdateCoche extends Component {
     return (
       <div>
         {
-            this.state.status == true &&
+            this.state.status === true &&
             (
                 <Navigate to="/" />
             )
@@ -72,7 +72,7 @@ export default class UpdateCoche extends Component {
             this.state.statusGet == true &&
             (
                 <form>
-                    <input type='hidden' ref={this.cajaId} defaultValue={this.state.coche.id} className='form-control'/>
+                    <input type='hidden' ref={this.cajaId} defaultValue={this.state.coche.idCoche} className='form-control'/>
                     <label>Marca</label>
                     <input type='text' ref={this.cajaId} defaultValue={this.state.coche.marca} className='form-control'/>
                     <label>Modelo</label>

@@ -1,18 +1,17 @@
 import React, { Component } from 'react'
+import { NavLink, Navigate } from 'react-router-dom'
 import axios from 'axios'
 import Global from '../Global'
-import { NavLink, Navigate } from 'react-router-dom'
 
-
-export default class EliminarDepartamento extends Component {
+export default class EliminarCoche extends Component {
 
     state = {
         status: false
     }
 
-    deleteDepartamento = () => {
-        var request = "api/departamentos/" + this.props.iddepartamento;
-        var url = Global.apiUrlDepartamentos + request;
+    deleteCoche = () => {
+        var request = "api/coches/" + this.props.idcoche;
+        var url = Global.apiUrlCoches + request;
         axios.delete(url).then(response => {
             this.setState({
                 status: true
@@ -30,8 +29,8 @@ export default class EliminarDepartamento extends Component {
             )
         }
         <NavLink to="/" >Back to List</NavLink>
-        <h1>¿Eliminar Departamento {this.props.iddepartamento}?</h1>
-            <button className='btn btn-danger' onClick={() => this.deleteDepartamento()}>Eliminar</button>
+        <h1>¿Eliminar Coche {this.props.idcoche}?</h1>
+            <button className='btn btn-danger' onClick={() => this.deleteCoche()}>Eliminar</button>
       </div>
     )
   }

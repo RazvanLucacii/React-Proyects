@@ -5,6 +5,7 @@ import MenuCoches from './MenuCoches';
 import CreateCoches from './CreateCoches';
 import DetalleCoche from './DetalleCoche';
 import UpdateCoche from './UpdateCoche';
+import EliminarCoche from './EliminarCoche';
 
 export default class Router extends Component {
   render() {
@@ -16,6 +17,10 @@ export default class Router extends Component {
         var { idCoche } = useParams();
         return(<UpdateCoche idcoche={idCoche}/>)
     }
+    function EliminarCochesElement() {
+      var { idCoche } = useParams();
+      return <EliminarCoche idcoche={idCoche} />
+    }
     return (
       <BrowserRouter>
         <MenuCoches />
@@ -25,6 +30,7 @@ export default class Router extends Component {
             <Route path="/create" element={<CreateCoches />} />
             <Route path="/details/:idCoche" element={<DetallesCochesElement />} />
             <Route path="/update/:idCoche" element={<UpdateCochesElement />} />
+            <Route path="/delete/:idCoche" element={<EliminarCochesElement />} />
         </Routes>
       </BrowserRouter>
     )

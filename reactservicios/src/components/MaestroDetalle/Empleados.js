@@ -50,7 +50,7 @@ export default class Empleados extends Component {
                 </thead>
                 <tbody>
                     {
-                        this.state.status = true && (
+                        this.state.status == true && (
                             this.state.empleados.map((empleado, index) => {
                                 return (
                                     <tr key={index}>
