@@ -1,8 +1,38 @@
 import React, { Component } from 'react'
 import {NavLink} from 'react-router-dom';
 import imagenChampions from './../assets/images/champions.png'
+import Global from '../Global';
+import axios from 'axios';
+import DetalleEquipos from './DetalleEquipos';
 
 export default class MenuEquipos extends Component {
+
+    state = {
+        equipos: [],
+        status: false
+    }
+
+    loadEquipos = () => {
+        var request = "api/equipos";
+        var url = Global.apiUrls + request;
+        axios.get(url).then(response => {
+            this.setState({
+                equipos: response.data,
+                status: true
+            })
+        })
+    }
+
+    componentDidMount = () => {
+        this.loadEquipos();
+    }
+
+    componentDidUpdate = (oldProps) =>{
+        if(oldProps.idEquipo !== this.state.oldProps){
+            this.loadEquipos();
+        }
+    }
+
   render() {
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -21,10 +51,15 @@ export default class MenuEquipos extends Component {
                                 Equipos
                             </a>
                             <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li>1</li>
-                                <li>2</li>
+                                {
+                                    this.state.equipos.map((equipo, index) =>{
+                                        return(<li key={index}>
+                                            <NavLink to={"/details/" + equipo.idEquipo}>{equipo.nombre}</NavLink>
+                                        </li>)
+                                    })
+                                }
                             </ul>
-                            </li>
+                        </li>
                     </ul>
                 </div>
             </div>

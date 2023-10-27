@@ -29,35 +29,35 @@ export default class Home extends Component {
     return (
       <div>
         <h1>Home Equipos</h1>
-                {
-                    this.state.status == true &&
-                    (
-                        <table className='table table-dark'>
-                            <thead>
-                                <tr>
-                                    <th>Nombre</th>
-                                    <th>Imagen</th>
-                                    <th>-</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {
-                                    this.state.equipos.map((equipo, index) =>{
-                                        return(<tr key={index}>
-                                            <td>{equipo.nombre}</td>
-                                            <td><img src={equipo.imagen} style={{width:"300px", height:"250px"}} /></td>
-                                            <td>
-                                                <NavLink className="btn btn-success" aria-current="page" to={"/details/" + equipo.idEquipo}>
-                                                    Detalles
-                                                </NavLink>
-                                            </td>
-                                        </tr>)
-                                    })
-                                }
-                            </tbody>
-                        </table>
-                    )
-                }
+            {
+                this.state.status == true &&
+                (
+                    <table className='table table-dark'>
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Imagen</th>
+                                <th>-</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                this.state.equipos.map((equipo, index) =>{
+                                    return(<tr key={index}>
+                                        <td>{equipo.nombre}</td>
+                                        <td><img src={equipo.imagen} style={{width:"200px"}} /></td>
+                                        <td>
+                                            <NavLink className="btn btn-success" aria-current="page" to={"/details/" + equipo.idEquipo}>
+                                                Detalles
+                                            </NavLink>
+                                        </td>
+                                    </tr>)
+                                })
+                            }
+                        </tbody>
+                    </table>
+                )
+            }
       </div>
     )
   }
