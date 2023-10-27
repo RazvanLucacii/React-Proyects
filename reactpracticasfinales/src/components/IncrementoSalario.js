@@ -8,43 +8,27 @@ export default class IncrementoSalario extends Component {
     cajaSalario = React.createRef();
     
     state = {
-        trabajador: {},
-        statusGet: false,
         status: false
     }
 
-    findTrabajador = () =>{
-        var request = "api/trabajadores/" + this.props.idtrabajador;
-        var url = Global.apiUrls + request;
-        axios.get(url).then(response =>{
-            this.setState({
-                trabajador: response.data,
-                statusGet: true
-            })
-        })
-    }
 
     updateSalario = (e) =>{
         e.preventDefault();
         var id = parseInt(this.cajaId.current.value);
         var salario = this.cajaSalario.current.value;
+        var mensaje = "";
 
-        var datos = {
-            trabajador : id,
-            salario: salario
+        for(var i = 0; i < this.props.id_hospitales.length; i++){
+            mensaje += "idhospital=" + this.props.id_hospitales[i] + "&";
         }
 
-        var request = "api/trabajadores/updatesalariotrabajadoresoficio/" + salario;
+        var request = "api/trabajadores/updatesalariotrabajadoreshospitales?incremento=" +salario + "&" + mensaje;
         var url = Global.apiUrls + request;
-        axios.put(url, datos).then(response =>{
+        axios.put(url).then(response =>{
             this.setState({
                 status: true
-            })
-        })
-    }
-
-    componentDidMount = () =>{
-        this.findTrabajador();
+            });
+        });
     }
 
 
@@ -52,19 +36,15 @@ export default class IncrementoSalario extends Component {
   render() {
     if(this.cajaSalario !== null){
         return (<div>
-            <NavLink to="/">Back to List</NavLink>
             <h1>Incremento Salario</h1>
             {
-                this.state.statusGet === true &&
-                (
-                    <form>
-                        <input type="hidden" ref={this.cajaId} className='form-control'></input>
-                        <label>Salario</label>
-                        <input type="number" min={0} ref={this.cajaSalario} className='form-control'></input>
-                        {/* <h2>{this.state.trabajador.salario + this.cajaSalario.current.value}</h2> */}
-                        <button onClick={this.updateSalario} className='btn btn-primary'>Modificar</button>
-                    </form>
-                )
+
+                <form>
+                    <input type="hidden" ref={this.cajaId} className='form-control'></input>
+                    <label>Salario</label>
+                    <input type="number" min={0} ref={this.cajaSalario} className='form-control'></input>
+                    <button onClick={this.updateSalario} className='btn btn-primary'>Modificar</button>
+                </form>
             }
         </div>)
 

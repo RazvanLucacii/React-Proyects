@@ -54,7 +54,7 @@ export default class UpdateDepartamento extends Component {
     return (
       <div>
         {
-            this.state.status == true &&
+            this.state.status === true &&
             (
                 <Navigate to="/"/>
             )
@@ -62,7 +62,7 @@ export default class UpdateDepartamento extends Component {
         <NavLink to="/" >Back to List</NavLink>
         <h1>Update Departamento {this.props.iddepartamento}</h1>
         {
-            this.state.statusGet == true &&
+            this.state.statusGet === true &&
             (
                 <form>
                     <input type="hidden" defaultValue={this.state.departamento.numero} ref={this.cajaNumero} className='form-control'/>

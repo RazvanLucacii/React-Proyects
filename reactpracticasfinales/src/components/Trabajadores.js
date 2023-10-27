@@ -13,26 +13,26 @@ export default class Trabajadores extends Component {
 
     loadTrabajadores = () =>{
         var mensaje = "";
+        var request = "api/trabajadores/trabajadoreshospitales?";
 
         for(let i = 0; i < this.props.id_hospitales.length; i++){
             mensaje += "idhospital=" + this.props.id_hospitales[i] + "&";
         }
-        var request = "api/trabajadores/trabajadoreshospitales?";
+
+        mensaje = mensaje.substring(0, mensaje.length - 1);
+
         var url = Global.apiUrls + request + mensaje;
         axios.get(url).then(response => {
             this.setState({
                 trabajadores: response.data,
                 status: true
             })
-
         })
 
     }
 
     incrementoSalario = () =>{
-        if(this.state.idTrabajadores === 0)
-            return       
-        return(<IncrementoSalario id_trabajadores={this.state.idTrabajadores}/>)
+        return(<IncrementoSalario id_hospitales={this.state.id_hospitales} />)
     }
 
     componentDidMount = () =>{
@@ -48,6 +48,9 @@ export default class Trabajadores extends Component {
   render() {
     return (
       <div>
+        <hr/>
+        <h1>Trabajadores</h1>
+        <br/>
         {
             <table className='table table-dark'>
                 <thead>
@@ -57,7 +60,6 @@ export default class Trabajadores extends Component {
                         <th>Oficio</th>
                         <th>Salario</th>
                         <th>ID Hospital</th>
-                        <th>Incremento</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -71,11 +73,6 @@ export default class Trabajadores extends Component {
                                     <td>{trabajador.oficio}</td>
                                     <td>{trabajador.salario}</td>
                                     <td>{trabajador.idHospital}</td>
-                                    <td>
-                                        <NavLink className="btn btn-success" aria-current="page" to={"/incremento/" + trabajador.idTrabajador}>
-                                            Incremento Salario
-                                        </NavLink>    
-                                    </td>
                                 </tr>)
                             })
                         )
@@ -83,6 +80,7 @@ export default class Trabajadores extends Component {
                 </tbody>
             </table>
         }
+        {this.incrementoSalario()}
       </div>
     )
   }

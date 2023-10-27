@@ -49,6 +49,7 @@ export default class Hospitales extends Component {
       <div>
         <h1>Hospitales</h1>
         <hr/>
+        <p>Eleccion multiple de hospitales:</p>
         <select ref={this.selectHospitales} multiple>
             {
                 this.state.status === true &&
@@ -61,6 +62,7 @@ export default class Hospitales extends Component {
                 )
             }
         </select>
+        <br/>
         <button onClick={this.buscarTrabajadores}>Mostrar Trabajadores</button>
         {
             this.Render_Trabajadores()

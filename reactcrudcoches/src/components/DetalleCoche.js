@@ -44,7 +44,7 @@ export default class DetalleCoche extends Component {
                 Conductor: {this.state.coche.conductor}
             </li>
             <li className='list-group-item'>
-                Imagen: <img src={this.state.coche.imagen} style={{width:"350px", height:"250px"}} />
+                Imagen: <img src={this.state.coche.imagen} style={{width:"350px", height:"250px"}}  alt='.'/>
             </li>
         </ul>
       </div>
