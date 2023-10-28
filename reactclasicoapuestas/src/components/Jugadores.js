@@ -6,13 +6,13 @@ import Global from './../Global'
 export default class Jugadores extends Component {
 
   state = {
-    jugadores: [],
+    jugadores: {},
     equipos:[],
     status: false
   }
 
   loadjugadores = () => {
-      var request = "api/jugadores";
+      var request = "api/jugadores/jugadoresequipos/" + this.props.idEquipo;
       var url = Global.apiUrls + request;
       axios.get(url).then(response => {
           this.setState({
@@ -47,7 +47,7 @@ export default class Jugadores extends Component {
         }
         <br/><br/>
         {
-          this.state.status == true &&
+          this.state.status === true &&
           (
             <table className='table table-dark'>
                 <thead>
@@ -62,7 +62,7 @@ export default class Jugadores extends Component {
                       this.state.jugadores.map((jugador, index) =>{
                           return(<tr key={index}>
                               <td>{jugador.nombre}</td>
-                              <td><img src={jugador.imagen} style={{width:"200px"}} /></td>
+                              <td><img src={jugador.imagen} style={{width:"200px"}} alt="." /></td>
                               <td>
                                   <NavLink className="btn btn-success" aria-current="page" to={"/detailsjugador/" + jugador.idJugador}>
                                       Detalles

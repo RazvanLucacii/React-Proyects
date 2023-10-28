@@ -34,7 +34,7 @@ export default class DetalleEquipos extends Component {
             <h3>Champions: {this.state.equipos.champions}</h3>
             <p>{this.state.equipos.descripcion}</p>
             <div>
-              <NavLink className="btn btn-success" to="/detailsjugador/">Jugadores</NavLink>
+              <NavLink className="btn btn-success" to={"/jugadores/" + this.props.idequipo}>Jugadores</NavLink>
               <NavLink className="btn btn-primary" to="/">Volver</NavLink>
             </div>
           </div>

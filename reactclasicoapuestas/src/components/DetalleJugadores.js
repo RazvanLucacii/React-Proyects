@@ -36,7 +36,7 @@ export default class DetalleJugadores extends Component {
             <p>Fecha Nacimiento: {this.state.jugadores.fechaNacimiento}</p>
             <p>Pais: {this.state.jugadores.pais}</p>
             <div>
-              <NavLink className="btn btn-success" to="/detailsjugador/">Jugadores</NavLink>
+              <NavLink className="btn btn-success" to={"/jugadores/" + this.state.jugadores.idEquipo}>Jugadores</NavLink>
             </div>
           </div>
         </form>
